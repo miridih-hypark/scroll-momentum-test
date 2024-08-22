@@ -6,17 +6,22 @@ const alphabets = "ABCDEFGHIJKLMNOPQR".split("");
 
 function App() {
   const [alpahet, setAlphabet] = useState<string | null>(null);
+  const [alpahet2, setAlphabet2] = useState<string | null>(null);
 
   const handleClick = (alpahbet: string) => {
     setAlphabet(alpahbet);
   };
+
+  const handleClick2 = (alpahbet: string) => {
+    setAlphabet2(alpahbet);
+  };
   return (
     <>
       <h1>Scroll below to test</h1>
-      <div className="card">
-        <h2>Selected Alphabet: {alpahet}</h2>
+      <div className="card" style={{ marginBottom: "20px" }}>
+        <h2>Momentum Scroll:</h2>
       </div>
-      <div style={{ marginBottom: "20px" }}>Momentum Scroll:</div>
+      <div>Selected Alphabet: {alpahet}</div>
       <CustomHorizontalScrollView className={"momentum"}>
         <ButtonsWrapper>
           {alphabets.map((alphabet) => (
@@ -26,11 +31,17 @@ function App() {
           ))}
         </ButtonsWrapper>
       </CustomHorizontalScrollView>
-      <div style={{ margin: "20px" }}>Ordinary Scroll:</div>
+      <div className="card">
+        <h2>Ordinary Scroll:</h2>
+      </div>
+      <div>Selected Alphabet: {alpahet2}</div>
       <CustomHorizontalScrollView>
         <ButtonsWrapper>
           {alphabets.map((alphabet) => (
-            <CustomButtons key={alphabet} onClick={() => handleClick(alphabet)}>
+            <CustomButtons
+              key={alphabet}
+              onClick={() => handleClick2(alphabet)}
+            >
               {alphabet}
             </CustomButtons>
           ))}
