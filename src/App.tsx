@@ -17,11 +17,12 @@ function App() {
   };
   return (
     <>
-      <h1>Scroll below to test</h1>
       <div className="card" style={{ marginBottom: "20px" }}>
-        <h2>Momentum Scroll:</h2>
+        <h3>Momentum Scroll (관성):</h3>
       </div>
-      <div>Selected Alphabet: {alpahet}</div>
+      <div>
+        Selected Alphabet: <h2>{alpahet}</h2>
+      </div>
       <CustomHorizontalScrollView className={"momentum"}>
         <ButtonsWrapper>
           {alphabets.map((alphabet) => (
@@ -32,9 +33,11 @@ function App() {
         </ButtonsWrapper>
       </CustomHorizontalScrollView>
       <div className="card">
-        <h2>Ordinary Scroll:</h2>
+        <h3>Ordinary Scroll (일반):</h3>
       </div>
-      <div>Selected Alphabet: {alpahet2}</div>
+      <div>
+        Selected Alphabet: <h2>{alpahet2}</h2>
+      </div>
       <CustomHorizontalScrollView>
         <ButtonsWrapper>
           {alphabets.map((alphabet) => (
