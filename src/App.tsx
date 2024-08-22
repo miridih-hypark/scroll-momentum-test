@@ -6,7 +6,6 @@ const alphabets = "ABCDEFGHIJKLMNOPQR".split("");
 
 function App() {
   const [alpahet, setAlphabet] = useState<string | null>(null);
-  const [isMomentumScroll, setIsMomentumScroll] = useState(false);
 
   const handleClick = (alpahbet: string) => {
     setAlphabet(alpahbet);
@@ -17,21 +16,18 @@ function App() {
       <div className="card">
         <h2>Selected Alphabet: {alpahet}</h2>
       </div>
-      <div style={{ marginBottom: "20px" }}>
-        Set Momentum Scroll:
-        <switch className="switch">
-          <input
-            type="checkbox"
-            id="switch"
-            checked={isMomentumScroll}
-            onChange={() => setIsMomentumScroll(!isMomentumScroll)}
-          />
-          <label htmlFor="switch"></label>
-        </switch>
-      </div>
-      <CustomHorizontalScrollView
-        className={isMomentumScroll ? "momentum" : ""}
-      >
+      <div style={{ marginBottom: "20px" }}>Momentum Scroll:</div>
+      <CustomHorizontalScrollView className={"momentum"}>
+        <ButtonsWrapper>
+          {alphabets.map((alphabet) => (
+            <CustomButtons key={alphabet} onClick={() => handleClick(alphabet)}>
+              {alphabet}
+            </CustomButtons>
+          ))}
+        </ButtonsWrapper>
+      </CustomHorizontalScrollView>
+      <div style={{ margin: "20px" }}>Ordinary Scroll:</div>
+      <CustomHorizontalScrollView>
         <ButtonsWrapper>
           {alphabets.map((alphabet) => (
             <CustomButtons key={alphabet} onClick={() => handleClick(alphabet)}>
@@ -53,6 +49,7 @@ const CustomHorizontalScrollView = styled("div")({
   maxWidth: "360px",
   overflowBehavior: "smooth",
   borderRadius: "10px",
+  overscrollBehavior: "none",
 
   // hide scrollbar
   "&::-webkit-scrollbar": {
@@ -61,16 +58,14 @@ const CustomHorizontalScrollView = styled("div")({
 
   // Enable smooth scrolling and momentum scroll when the class is applied
   "&.momentum": {
-    scrollSnapType: "x mandatory",
-    scrollBehavior: "smooth",
-    WebkitOverflowScrolling: "touch",
+    overscrollBehavior: "contain",
   },
 });
 
 const CustomButtons = styled("button")({
   padding: "10px",
   margin: "10px",
-  width: '40px',
+  width: "40px",
   backgroundColor: "lightblue",
   borderRadius: "5px",
   cursor: "pointer",
